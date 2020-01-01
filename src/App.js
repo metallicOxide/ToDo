@@ -6,18 +6,17 @@ import { useItemHooks } from "./hook/itemHooks";
 import ItemList from "./components/itemList";
 
 function App() {
-  const { value, clearValue, changeValue, onEnterKey } = useFormHooks();
-  const { searchValue, clearSearch, changeSearch, onEnterSearch } = useFormHooks();
   const {
     items,
     search,
     addItem,
     checkItem,
     removeItem,
-    updateSearch,
     searchItem,
     editItem
   } = useItemHooks();
+  const { value, clearValue, changeValue, onEnterKey } = useFormHooks();
+  const { searchValue, clearSearch, changeSearch, onEnterSearch } = useFormHooks();
 
   const clearFormAddItem = () => {
     clearValue();
@@ -46,7 +45,7 @@ function App() {
         onButtonClick={clearFormAddItem}
       />
       <ItemList 
-        items={items}
+        items={search}
         onItemRemove={id=>removeItem(id)}
         onItemCheck={id=>checkItem(id)}
       />

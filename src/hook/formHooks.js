@@ -8,7 +8,8 @@ export const useFormHooks = (initialValue = "") => {
     clearValue: () => setValue(""),
     changeValue: e => setValue(e.target.value),
     onEnterKey: (event, callback) => {
-        if (event.keyCode === 13) {
+        // handle enter presses
+        if (event.keyCode === 13 || event.which === 13) {
             callback(event);
             return true;
         } 

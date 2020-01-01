@@ -5,20 +5,27 @@ export const useItemHooks = (initialValue = []) => {
   // set initial value of search to items
   const [search, setSearch] = useState(items);
 
+  const inResult = item => {
+    const filteredResut = search.filter((result) => result.text !== item);
+    if (filteredResut.length !== search.length) {
+      return 0;
+    }
+    return 1;
+  }
+
   return {
     items,
     search,
     addItem: text => {
       if (text.trim() !== "") {
-        setItems(
-          items.concat({
-            text,
-            checked: false
-          })
-        );
+        const newItems = items.concat({
+          text,
+          checked: false
+        });
+        setItems(newItems);
         // refresh search after adding in new items
-        console.log(items);
-        setSearch(items);
+        // console.log(newItems);
+        setSearch(newItems);
       }
     },
 
@@ -34,34 +41,23 @@ export const useItemHooks = (initialValue = []) => {
     },
 
     removeItem: id => {
-      setItems(items.filter((item, index) => id !== index));
-      setSearch(items);
-    },
-
-    updateSearch: items => {
-      setSearch(items);
+      const newItems = items.filter((item, index) => id !== index);
+      setItems(newItems);
+      setSearch(newItems);
     },
 
     searchItem: e => {
       const searchTgt = e.target.value;
+      console.log(e.target.value)
       // set search to empty array first
-      setSearch([]);
+      console.log(search)
       if (searchTgt === "") {
         // empty search, add everything
         setSearch(items);
       } else {
-        // else go through items and only match those that
-        items.map(item => {
-          console.log(search, searchTgt)
-          if (
-            item.text
-              .toLowerCase()
-              .includes(searchTgt.toLowerCase())
-          ) {
-            setSearch(search.concat(item));
-          }
-          return item;
-        });
+        // else go through items and only add unique items that matches
+        setSearch(items.filter(item => item.text.toLowerCase().includes(searchTgt.toLowerCase())));
+
       }
     },
 
