@@ -16,24 +16,12 @@ function App() {
     editItem
   } = useItemHooks();
   const { value, clearValue, changeValue, onEnterKey } = useFormHooks();
-  const { searchValue, clearSearch, changeSearch, onEnterSearch } = useFormHooks();
 
+  // clears add form and adds item into list
   const clearFormAddItem = () => {
     clearValue();
     addItem(value);
-    console.log("In wrapper function")
-    console.log(items)
   };
-
-  const clearFormSearch = () => {
-    searchItem(searchValue);
-    clearSearch();
-  };
-
-  // const addUpdateSearch = () => {
-  //   addItem(value);
-  //   updateSearch(items);
-  // }
 
   return (
     <div>
@@ -48,45 +36,10 @@ function App() {
         items={search}
         onItemRemove={id=>removeItem(id)}
         onItemCheck={id=>checkItem(id)}
+        onEdit={(id, event) => editItem(id, event.target.value)}
       />
     </div>
   );
 }
 
 export default App;
-
-// import { useInputValue, useTodos } from "./custom-hooks";
-
-// import Layout from "./components/Layout";
-
-// import AddTodo from "./components/AddTodo";
-// import TodoList from "./components/TodoList";
-
-// const TodoApp = memo(props => {
-//   const { inputValue, changeInput, clearInput, keyInput } = useInputValue();
-//   const { todos, addTodo, checkTodo, removeTodo } = useTodos();
-
-//   const clearInputAndAddTodo = _ => {
-//     clearInput();
-//     addTodo(inputValue);
-//   };
-
-//   return (
-//     <Layout>
-//       <AddTodo
-//         inputValue={inputValue}
-//         onInputChange={changeInput}
-//         onButtonClick={clearInputAndAddTodo}
-//         onInputKeyPress={event => keyInput(event, clearInputAndAddTodo)}
-//       />
-//       <TodoList
-//         items={todos}
-//         onItemCheck={idx => checkTodo(idx)}
-//         onItemRemove={idx => removeTodo(idx)}
-//       />
-//     </Layout>
-//   );
-// });
-
-// const rootElement = document.getElementById("root");
-// ReactDOM.render(<TodoApp />, rootElement);

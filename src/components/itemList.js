@@ -16,6 +16,7 @@ const ItemList = props => {
               divider={id !== props.items.length - 1}
               onTrashClick={() => props.onItemRemove(id)}
               onCheckBoxToggle={() => props.onItemCheck(id)}
+              onEditItem = {e => props.onEdit(id, e)}
             />
           ))}
         </List>

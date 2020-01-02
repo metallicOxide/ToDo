@@ -5,14 +5,6 @@ export const useItemHooks = (initialValue = []) => {
   // set initial value of search to items
   const [search, setSearch] = useState(items);
 
-  const inResult = item => {
-    const filteredResut = search.filter((result) => result.text !== item);
-    if (filteredResut.length !== search.length) {
-      return 0;
-    }
-    return 1;
-  }
-
   return {
     items,
     search,
@@ -48,28 +40,29 @@ export const useItemHooks = (initialValue = []) => {
 
     searchItem: e => {
       const searchTgt = e.target.value;
-      console.log(e.target.value)
       // set search to empty array first
-      console.log(search)
       if (searchTgt === "") {
         // empty search, add everything
         setSearch(items);
       } else {
         // else go through items and only add unique items that matches
-        setSearch(items.filter(item => item.text.toLowerCase().includes(searchTgt.toLowerCase())));
-
+        setSearch(
+          items.filter(item =>
+            item.text.toLowerCase().includes(searchTgt.toLowerCase())
+          )
+        );
       }
     },
 
     editItem: (id, value) => {
-      setItems(
-        items.map((item, index) => {
-          if (id === index) {
-            item.value = value;
-          }
-          return item;
-        })
-      );
+      const newItems = items.map((item, index) => {
+        if (id === index) {
+          item.text = value;
+        }
+        return item;
+      });
+      setItems(newItems);
+      setSearch(newItems);
     }
   };
 };
