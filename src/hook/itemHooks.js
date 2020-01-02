@@ -4,13 +4,19 @@ export const useItemHooks = (initialValue = []) => {
   const [items, setItems] = useState(initialValue);
   // set initial value of search to items
   const [search, setSearch] = useState(items);
+  // id
+  const [idNum, setIdNum] = useState(0)
 
   return {
     items,
+    setItems,
     search,
+    setSearch,
     addItem: text => {
       if (text.trim() !== "") {
+        const id = `item-${idNum}`;
         const newItems = items.concat({
+          id,
           text,
           checked: false
         });
@@ -18,6 +24,8 @@ export const useItemHooks = (initialValue = []) => {
         // refresh search after adding in new items
         // console.log(newItems);
         setSearch(newItems);
+        // increment id
+        setIdNum(idNum + 1);
       }
     },
 

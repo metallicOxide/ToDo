@@ -7,16 +7,17 @@ const ItemList = props => {
     <div className="itemList">
       {props.items.length > 0 && (
         <List style={{ overflow: "scroll" }}>
-          {props.items.map((todo, id) => (
+          {props.items.map((todo, index) => (
             <Item
               text={todo.text}
               checked={todo.checked}
-              key={`TodoItem.${id}`}
-              index={id}
-              divider={id !== props.items.length - 1}
-              onTrashClick={() => props.onItemRemove(id)}
-              onCheckBoxToggle={() => props.onItemCheck(id)}
-              onEditItem = {e => props.onEdit(id, e)}
+              key={todo.id}
+              id= {todo.id}
+              index={index}
+              divider={index !== props.items.length - 1}
+              onTrashClick={() => props.onItemRemove(index)}
+              onCheckBoxToggle={() => props.onItemCheck(index)}
+              onEditItem = {e => props.onEdit(index, e)}
             />
           ))}
         </List>
