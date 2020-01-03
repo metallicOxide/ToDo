@@ -11,13 +11,13 @@ const ItemList = props => {
             <Item
               text={todo.text}
               checked={todo.checked}
+              id={todo.id}
               key={todo.id}
-              id= {todo.id}
               index={index}
               divider={index !== props.items.length - 1}
               onTrashClick={() => props.onItemRemove(index)}
               onCheckBoxToggle={() => props.onItemCheck(index)}
-              onEditItem = {e => props.onEdit(index, e)}
+              onEditItem={e => props.onEdit(index, e)}
             />
           ))}
         </List>

@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, Paper, Button, Grid } from "@material-ui/core";
 
+// used Grid to do the button placement
 const ItemForm = props => (
   <Paper style={{ margin: 16, padding: 16 }}>
     <Grid container>

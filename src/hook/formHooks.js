@@ -8,12 +8,12 @@ export const useFormHooks = (initialValue = "") => {
     clearValue: () => setValue(""),
     changeValue: e => setValue(e.target.value),
     onEnterKey: (event, callback) => {
-        // handle enter presses
-        if (event.keyCode === 13 || event.which === 13) {
-            callback(event);
-            return true;
-        } 
-        return false;
+      // handle enter presses
+      if (event.keyCode === 13 || event.which === 13) {
+        callback(event);
+        return true;
+      }
+      return false;
     }
   };
 };

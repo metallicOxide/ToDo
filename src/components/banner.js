@@ -68,6 +68,7 @@ const Banner = props => {
             </div>
             <InputBase
               placeholder="Search…"
+              value={props.searchValue}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput
