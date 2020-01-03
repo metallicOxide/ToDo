@@ -1,5 +1,5 @@
 {
-  "homepage": "http://yuribenjamin.github.io/my-app",
+  "homepage": "http://metallicOxide.github.io/ToDo",
   "name": "todo",
   "version": "0.1.0",
   "private": true,
@@ -36,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
